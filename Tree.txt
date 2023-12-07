@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class TreeNodeList<T> {
+    private T data;
+    private List<TreeNodeList<T>> children;
+
+    public TreeNodeList(T data) {
+        this.data = data;
+        this.children = new ArrayList<>();
+    }
+
+    public void addChild(TreeNodeList<T> child) {
+        this.children.add(child);
+    }
+
+    public void displayTree() {
+        displayTree(this, 0);
+    }
+
+    private void displayTree(TreeNodeList<T> node, int level) {
+        for (int i = 0; i < level; i++) {
+            System.out.print("  "); // Adjust spacing for levels
+        }
+        System.out.println(node.data);
+
+        for (TreeNodeList<T> child : node.children) {
+            displayTree(child, level + 1);
+        }
+    }
+
+    // Implement or remove the exitQuery() method
+    public void exitQuery() {
+        // Your exit query implementation here
+        System.out.println("Exiting the program.");
+        System.exit(0);
+    }
+}
+
+public class TreeExample {
+    public static void main(String[] args) {
+        System.out.print("\n>> Tree as a Data Structure <<\n\n");
+        TreeNodeList<String> root = new TreeNodeList<>("What I Eat Daily");
+
+        TreeNodeList<String> child1 = new TreeNodeList<>("Breakfast");
+        TreeNodeList<String> child2 = new TreeNodeList<>("Lunch");
+        TreeNodeList<String> child3 = new TreeNodeList<>("Dinner");
+
+        root.addChild(child1);
+        root.addChild(child2);
+        root.addChild(child3);
+
+        TreeNodeList<String> grandchild1 = new TreeNodeList<>("Bread");
+        TreeNodeList<String> grandchild2 = new TreeNodeList<>("Milk");
+        TreeNodeList<String> grandchild3 = new TreeNodeList<>("Egg");
+        TreeNodeList<String> grandchild4 = new TreeNodeList<>("Rice");
+        TreeNodeList<String> grandchild5 = new TreeNodeList<>("Chicken");
+        TreeNodeList<String> grandchild6 = new TreeNodeList<>("Veggies");
+
+        child1.addChild(grandchild1);
+        child1.addChild(grandchild2);
+        child1.addChild(grandchild3);
+        child2.addChild(grandchild4);
+        child2.addChild(grandchild5);
+        child3.addChild(grandchild6);
+
+        // Display the tree
+        root.displayTree();
+        root.exitQuery();
+    }
+}

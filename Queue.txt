@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class CaesarCipher {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("Enter Cleartext:");
+		String cleartext = scanner.nextLine();
+
+		System.out.println("Enter a value for k:");
+		int k = scanner.nextInt();
+
+		String ciphertext
+=encryptCaesarCipher(cleartext, k);
+
+		System.out.println("Ciphertext:");
+		System.out.println(ciphertext);
+	}
+
+	private static String
+encryptCaesarCipher(String cleartext, int k) {
+		StringBuilder ciphertext = new
+StringBuilder();
+
+		for (char ch : cleartext.toCharArray()) {
+			if (Character.isLetter(ch)) {
+				char base = Character.isUpperCase(ch)
+? 'A' : 'a';
+        		ciphertext.append((char)((ch - base +
+k) % 26 + base));
+			} else { 
+		   	ciphertext.append(ch);
+	   	}
+    	}
+    	
+    	return ciphertext.toString();
+    }
+}
